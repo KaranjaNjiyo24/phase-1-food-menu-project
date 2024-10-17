@@ -18,13 +18,28 @@ h1 {
 }
 
 /* Gallery container */
-.gallery {
+.menu {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+#food-menu div {
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
+}
+
+#food-menu div:hover {
+    transform: scale(1.05);
+}
+
+#food-menu img {
+    border-radius: 20px;
 }
 
 /* Footer */
