@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 dishName: dishName,
                 category: category,
                 likes:0,
-                dsilikes:0,
+                dislikes:0,
                 liked:false,
-                dislike: false,
+                disliked: false,
                 comments:[]
             })
 
@@ -115,14 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to display the list of comments for a food item
     function displayComments(index) {
         const commentsList = document.getElementById(`comments-list-${index}`);
-        commentsList.innerHTML = ""; // Clear previous comments
+        commentsList.innerHTML = ""; // To clear previous comments
 
         menuItems[index].comments.forEach(comment => {
             const commentElement = document.createElement("p");
             commentElement.textContent = comment;
             commentsList.appendChild(commentElement);
         });
-    }    
+    }
+
     //Creating the extract category from URL
     //Using split
     function extractCategoryFromUrl(imageUrl) {
