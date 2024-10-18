@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
             })
 
             if (menuItems.length === 10) {
-                displayFoodItems()
+                displaymenuItems()
             }
 
         })
     }
-    function displayFoodItems() {
+    function displaymenuItems() {
         foodMenu.innerHTML = ""
         menuItems.forEach((item, index) => {
             const card = document.createElement("div")
@@ -59,36 +59,70 @@ document.addEventListener("DOMContentLoaded", () => {
     }
         // Functions to handle likes and dislikes with inverse relationship
     window.likeFood = function(index) {
-        if (!foodItems[index].liked) {
-            foodItems[index].likes++;
-            foodItems[index].liked = true;
+        if (!menuItems[index].liked) {
+            menuItems[index].likes++;
+            menuItems[index].liked = true;
             // If previously disliked, remove the dislike
-            if (foodItems[index].disliked) {
-                foodItems[index].dislikes--;
-                foodItems[index].disliked = false;
+            if (menuItems[index].disliked) {
+                menuItems[index].dislikes--;
+                menuItems[index].disliked = false;
             }
         }
-        document.getElementById(`like-count-${index}`).textContent = foodItems[index].likes;
-        document.getElementById(`dislike-count-${index}`).textContent = foodItems[index].dislikes;
+        document.getElementById(`like-count-${index}`).textContent = menuItems[index].likes;
+        document.getElementById(`dislike-count-${index}`).textContent = menuItems[index].dislikes;
     };
 
 
     // Functions to handle likes and dislikes with inverse relationship
     window.likeFood = function(index) {
-        if (!foodItems[index].liked) {
-            foodItems[index].likes++;
-            foodItems[index].liked = true;
+        if (!menuItems[index].liked) {
+            menuItems[index].likes++;
+            menuItems[index].liked = true;
             // If previously disliked, remove the dislike
-            if (foodItems[index].disliked) {
-                foodItems[index].dislikes--;
-                foodItems[index].disliked = false;
+            if (menuItems[index].disliked) {
+                menuItems[index].dislikes--;
+                menuItems[index].disliked = false;
             }
         }
-        document.getElementById(`like-count-${index}`).textContent = foodItems[index].likes;
-        document.getElementById(`dislike-count-${index}`).textContent = foodItems[index].dislikes;
+        document.getElementById(`like-count-${index}`).textContent = menuItems[index].likes;
+        document.getElementById(`dislike-count-${index}`).textContent = menuItems[index].dislikes;
     };
 
-    
+    window.dislikeFood = function(index) {
+        if (!menuItems[index].disliked) {
+            menuItems[index].dislikes++;
+            menuItems[index].disliked = true;
+            // If previously liked, remove the like
+            if (menuItems[index].liked) {
+                menuItems[index].likes--;
+                menuItems[index].liked = false;
+            }
+        }
+        document.getElementById(`like-count-${index}`).textContent = menuItems[index].likes;
+        document.getElementById(`dislike-count-${index}`).textContent = menuItems[index].dislikes;
+    };
+
+    // Function to handle adding comments
+    window.addComment = function(index) {
+        const commentText = document.getElementById(`comment-${index}`).value;
+        if (commentText.trim() !== "") {
+            menuItems[index].comments.push(commentText);
+            document.getElementById(`comment-${index}`).value = ""; // Clear the textarea
+            displayComments(index);
+        }
+    };
+
+    // Function to display the list of comments for a food item
+    function displayComments(index) {
+        const commentsList = document.getElementById(`comments-list-${index}`);
+        commentsList.innerHTML = ""; // Clear previous comments
+
+        menuItems[index].comments.forEach(comment => {
+            const commentElement = document.createElement("p");
+            commentElement.textContent = comment;
+            commentsList.appendChild(commentElement);
+        });
+    }    
     //Creating the extract category from URL
     //Using split
     function extractCategoryFromUrl(imageUrl) {
