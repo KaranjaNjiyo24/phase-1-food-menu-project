@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const foodMenu = document.getElementById('food-menu')
     const baseUrl = 'https://foodish-api.com/api'
     let menuItems = [];
-    
+
     //Use our Fetch 
     for (let i=0; i<10; i++) {
     fetch(baseUrl)
@@ -57,7 +57,55 @@ document.addEventListener("DOMContentLoaded", () => {
             foodMenu.appendChild(card)
         })
     }
-        // Functions to handle likes and dislikes with inverse relationship
+    // Function to handle adding comments
+    window.addComment = function(index) {
+        const commentText = document.getElementById(`comment-${index}`).value;
+        if (commentText.trim() !== "") {
+            foodItems[index].comments.push({
+                text: commentText,
+                edited: false // Track whether a comment has been edited
+            });
+            document.getElementById(`comment-${index}`).value = ""; // Clear the textarea
+            displayComments(index);
+        }
+    };
+
+    // Function to display the list of comments for a food item
+    function displayComments(index) {
+        const commentsList = document.getElementById(`comments-list-${index}`);
+        commentsList.innerHTML = ""; // Clear previous comments
+
+        foodItems[index].comments.forEach((comment, commentIndex) => {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment-item");
+
+            // Display the comment and buttons
+            commentElement.innerHTML = `
+                <p>${comment.text} ${comment.edited ? "(edited)" : ""}</p>
+                <button onclick="editComment(${index}, ${commentIndex})">Edit</button>
+                <button onclick="deleteComment(${index}, ${commentIndex})">Delete</button>
+            `;
+
+            commentsList.appendChild(commentElement);
+        });
+    }
+
+    // Function to handle deleting comments
+    window.deleteComment = function(foodIndex, commentIndex) {
+        foodItems[foodIndex].comments.splice(commentIndex, 1); // Remove the comment
+        displayComments(foodIndex); // Refresh the comments list
+    };
+
+    // Function to handle editing comments
+    window.editComment = function(foodIndex, commentIndex) {
+        const newCommentText = prompt("Edit your comment:", foodItems[foodIndex].comments[commentIndex].text);
+        if (newCommentText !== null && newCommentText.trim() !== "") {
+            foodItems[foodIndex].comments[commentIndex].text = newCommentText;
+            foodItems[foodIndex].comments[commentIndex].edited = true; // Mark the comment as edited
+            displayComments(foodIndex); // Refresh the comments list
+        }
+    }
+    // Functions to handle likes and dislikes with inverse relationship
     window.likeFood = function(index) {
         if (!menuItems[index].liked) {
             menuItems[index].likes++;
@@ -124,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     //Creating the extract category from URL
     //Using split
     function extractCategoryFromUrl(imageUrl) {
@@ -131,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return urlParts[urlParts.length - 2]
     }
 
-    //Formatting the dishname to capitlize the first letter
+    //Formatting the dishname to capitalize the first letter
     // using toUpperCase
     function formatDishName(category) {
         return category.charAt(0).toUpperCase() + category.slice(1)
