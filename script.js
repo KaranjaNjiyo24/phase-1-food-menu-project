@@ -137,18 +137,36 @@ document.addEventListener("DOMContentLoaded", () => {
         return category.charAt(0).toUpperCase() + category.slice(1)
     }
 
-    const themeToggleButton = document.getElementById('theme-toggle');
+    const darkModeToggle = document.getElementById('theme-toggle');
+    let isDarkMode = false;
 
-    // Add an event listener for the button click
-    themeToggleButton.addEventListener('click', () => {
-        // Toggle the 'dark-mode' class on the body element
-        document.body.classList.toggle('dark-mode');
+    function toggleDarkMode() {
+        isDarkMode = !isDarkMode;
 
-        // Optional: Change the button text depending on the current theme
-        if (document.body.classList.contains('dark-mode')) {
-            themeToggleButton.textContent = "Switch to Light Mode";
+        // Apply dark mode styles if true, else light mode
+        //This is where our if else comes in!!
+        if (isDarkMode) {
+            document.body.style.backgroundColor = "#333"; // Dark background
+            document.body.style.color = "#fff"; // Light text color
+
+            // Update food card background color for dark mode
+            document.querySelectorAll('.food-card').forEach(card => {
+                card.style.backgroundColor = "#444"; // Dark background for cards
+                card.style.color = "#fff"; // Light text color inside the card
+            });
+
         } else {
-            themeToggleButton.textContent = "Switch to Dark Mode";
+            document.body.style.backgroundColor = "#fff"; // Light background
+            document.body.style.color = "#333"; // Dark text color
+
+            // Reset food card background color for light mode
+            document.querySelectorAll('.food-card').forEach(card => {
+                card.style.backgroundColor = "#fff"; // Light background for cards
+                card.style.color = "#333"; // Dark text color inside the card        
+            });
         }
-    });
+    }
+
+    // Add event listener for button click to toggle dark mode
+    darkModeToggle.addEventListener('click', toggleDarkMode);
 })
