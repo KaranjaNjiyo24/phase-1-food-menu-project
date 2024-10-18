@@ -1,3 +1,5 @@
+
+
 body {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
@@ -138,5 +140,13 @@ footer p {
 
 #theme-toggle:hover {
     background-color: #e65b53;
+}
+
+/* Style for edited comment */
+.edited {
+    color: #888;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    font-style: italic;
 }
 
