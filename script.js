@@ -136,4 +136,19 @@ document.addEventListener("DOMContentLoaded", () => {
     function formatDishName(category) {
         return category.charAt(0).toUpperCase() + category.slice(1)
     }
+
+    const themeToggleButton = document.getElementById('theme-toggle');
+
+    // Add an event listener for the button click
+    themeToggleButton.addEventListener('click', () => {
+        // Toggle the 'dark-mode' class on the body element
+        document.body.classList.toggle('dark-mode');
+
+        // Optional: Change the button text depending on the current theme
+        if (document.body.classList.contains('dark-mode')) {
+            themeToggleButton.textContent = "Switch to Light Mode";
+        } else {
+            themeToggleButton.textContent = "Switch to Dark Mode";
+        }
+    });
 })
