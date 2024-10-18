@@ -218,4 +218,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listener for button click to toggle dark mode
     darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    // Add a 'mouseover' event listener to change button text when hovering over the toggle button
+    darkModeToggle.addEventListener('mouseover', () => {
+        darkModeToggle.textContent = "Ready to switch themes?";
+    });
+
+    // Add a 'mouseleave' event listener to revert the button text back to its original state
+    darkModeToggle.addEventListener('mouseleave', () => {
+        darkModeToggle.textContent = isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
+    });
 })
