@@ -17,7 +17,7 @@ h1 {
     margin: 0;
 }
 
-/* Gallery container */
+/* Menu container */
 .menu {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -34,13 +34,31 @@ h1 {
     transition: 0.2s;
 }
 
-#food-menu div:hover {
+#food-menu:hover {
     transform: scale(1.05);
 }
 
 #food-menu img {
     border-radius: 20px;
 }
+
+/* Like/Dislike and Comment section */
+.interaction-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+button {
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 
 /* Footer */
 footer {
