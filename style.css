@@ -126,7 +126,7 @@ footer p {
 
 /* Styling for the theme toggle button */
 #theme-toggle {
-    background-color: #130a09;
+    background-color: #ff6f61;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -137,5 +137,6 @@ footer p {
 }
 
 #theme-toggle:hover {
-    background-color: #e65b53; 
+    background-color: #e65b53;
 }
+
