@@ -42,6 +42,33 @@ h1 {
     border-radius: 20px;
 }
 
+/* Food item card */
+.food-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+    /* Make sure the food card is contained within its grid cell */
+    width: 100%;
+}
+
+.food-card:hover {
+    transform: scale(1.05);
+}
+
+.food-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Ensures the image covers the area proportionally */
+    display: block; /* Ensures images are treated as block elements */
+}
+
+.food-info {
+    padding: 10px;
+}
+
 /* Like/Dislike and Comment section */
 .interaction-buttons {
     display: flex;
